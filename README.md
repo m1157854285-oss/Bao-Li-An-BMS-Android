@@ -1,4 +1,4 @@
-# BMS 随行20 · Android 0.3.2
+# 保锂安BMS · Android 6.6.6
 
 纯手机版，面向一加 Ace 6 / Android 16、保锂安 LK8625-A66542（LR365V10_N031x）、20 串磷酸铁锂。沿用原 Android 包名 io.bmsride.monitor。
 
