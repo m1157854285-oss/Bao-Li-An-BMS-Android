@@ -5,4 +5,8 @@ PASS all synthetic tests
 PASS 20S 3mV / three probes / flags / malformed and stale data
 PASS LK86 synthetic 20S screenshot values, fragmented frame, checksum, stale data, model gate, read whitelist, missing capacity/MOS
 PASS 60min chart window / missing data / maximum speed / reset / defensive copy
-PASS paired GPS/BLE energy integration, gaps, reset
+PASS paired GPS/BLE energy, missing data, disconnect, gap, reset
+PASS tab gestures / bounds / vertical rejection / stable device priority
+PASS Java source syntax (parse only; no Android SDK)
+PASS Bash syntax
+PASS YAML workflow parse
