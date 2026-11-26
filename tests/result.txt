@@ -1,13 +1,8 @@
-PASS JBD 20S + split frames
-PASS JK24 split + checksum rejection
-PASS JK32 split + checksum rejection
-PASS all synthetic tests
+PASS GPS walking / immediate start / near-zero / riding / gaps / stale-invalid / reset
 PASS 20S 3mV / three probes / flags / malformed and stale data
 PASS LK86 synthetic 20S screenshot values, fragmented frame, checksum, stale data, model gate, read whitelist, missing capacity/MOS
-PASS 60min chart window / missing data / maximum speed / reset / defensive copy
+PASS LK8625 shared battery model / valid cells / delta / defensive copy
 PASS paired GPS/BLE energy, missing data, disconnect, gap, reset
-PASS drag target / snap thresholds / tab bounds / vertical rejection / stable device priority
-PASS GPS stationary jitter / spike rejection / start / stop / distance / uncertainty / gaps / reset
-PASS Java source syntax (parse only; no Android SDK)
-PASS Bash syntax
-PASS YAML workflow parse
+PASS 60min chart window / missing data / maximum speed / reset / defensive copy
+PASS drag target / snap thresholds / tab bounds / stable device priority / active device dedup / numeric formatting
+PASS Java parser (syntax only, not Android API type checking)

@@ -11,7 +11,7 @@ final class Lk86Decoder {
   byte[] b={0x3a,0x7e,1,1,(byte)cmd,0,0};b[6]=(byte)sum(b,6);return b;
  }
  static int u(byte[] b,int i){return b[i]&255;} static int le(byte[] b,int i){return u(b,i)|(u(b,i+1)<<8);} static int sum(byte[] b,int n){int s=0;for(int i=0;i<n;i++)s+=u(b,i);return s&255;}
- byte[] pending=new byte[0]; String model=""; boolean confirmed; long liveAt=-1,cellAt=-1,tempAt=-1; double v,a,soc,full=Double.NaN,temp=Double.NaN; double[] cells,temps=new double[0]; int flags=-1; String alarm,protection,fault;
+ byte[] pending=new byte[0]; String model=""; boolean confirmed; long liveAt=-1,cellAt=-1,tempAt=-1; double v,a,soc,full=Double.NaN; double[] cells,temps=new double[0]; int flags=-1; String alarm,protection,fault;
  static String hex(byte[] d,int from,int to){StringBuilder b=new StringBuilder();for(int i=from;i<to;i++)b.append(String.format(java.util.Locale.US,"%02X",u(d,i)));return b.toString();}
  Protocol.Battery feed(byte[] chunk,long now){
   if(chunk.length>1024){pending=new byte[0];return null;}
@@ -26,11 +26,11 @@ final class Lk86Decoder {
   if(cmd==CAPACITY&&d.length>=8){double x=le(d,4)/100.0;full=x>0?x:Double.NaN;}
   else if(cmd==LIVE){liveAt=-1;if(d.length<38)return null;double vv=le(d,0)/100.0,aa=(short)le(d,2)/100.0,ss=le(d,4)/50.0;if(vv<10||vv>100||ss>100)return null;v=vv;a=aa;soc=ss;flags=u(d,36);alarm=hex(d,26,30);protection=hex(d,30,34);fault=hex(d,34,36);liveAt=now;}
   else if(cmd==CELLS){cellAt=-1;if(d.length!=45||le(d,0)!=20)return null;double[] c=new double[20];for(int i=0;i<20;i++)c[i]=le(d,5+i*2)/1000.0;if(!Protocol.validCells(c))return null;cells=c;cellAt=now;}
-  else if(cmd==TEMPS){tempAt=-1;temp=Double.NaN;temps=new double[0];if(d.length<2)return null;int n=le(d,0);if(n!=3||d.length!=2+2*n)return null;double[] t3=new double[n];for(int i=0;i<n;i++){double t=(le(d,2+i*2)-2731)/10.0;t3[i]=(t>=-50&&t<=120)?t:Double.NaN;}temps=t3;temp=Arrays.stream(t3).filter(Double::isFinite).max().orElse(Double.NaN);tempAt=now;}
+  else if(cmd==TEMPS){tempAt=-1;temps=new double[0];if(d.length<2)return null;int n=le(d,0);if(n!=3||d.length!=2+2*n)return null;double[] t3=new double[n];for(int i=0;i<n;i++){double t=(le(d,2+i*2)-2731)/10.0;t3[i]=(t>=-50&&t<=120)?t:Double.NaN;}temps=t3;tempAt=now;}
   else return null;
   if(cmd!=LIVE&&cmd!=CELLS&&cmd!=TEMPS&&cmd!=CAPACITY)return null;
   if(liveAt<0||cellAt<0||Math.abs(liveAt-cellAt)>2500||now-liveAt>2500||now-cellAt>2500)return null;
   if(Math.abs(Arrays.stream(cells).sum()-v)>1.0)return null;
-  return new Protocol.Battery(v,a,Double.isFinite(full)?full*soc/100:Double.NaN,soc,tempAt>=0&&now-tempAt<15000?temp:Double.NaN,Double.NaN,cells,Math.min(liveAt,cellAt),tempAt>=0&&now-tempAt<15000?temps:new double[0],flags,alarm,protection,fault);
+  return new Protocol.Battery(v,a,Double.isFinite(full)?full*soc/100:Double.NaN,soc,Double.NaN,cells,Math.min(liveAt,cellAt),tempAt>=0&&now-tempAt<15000?temps:new double[0],flags,alarm,protection,fault);
  }
 }
