@@ -1,6 +1,12 @@
-# 保锂安BMS · Android 6.6.6
+# BMS 随行20 · Android 0.3.3
 
 纯手机版，面向一加 Ace 6 / Android 16、保锂安 LK8625-A66542（LR365V10_N031x）、20 串磷酸铁锂。沿用原 Android 包名 io.bmsride.monitor。
+
+## V0.3.3 界面更新
+- 总览：按参考图采用深蓝卡片、绿色 SOC 圆环（两位小数）、容量与电量条、四列电气参数与四列温度卡片。保留原始 MOS 状态和告警。
+- 行车 GPS：蓝色大号车速、近 120 秒双轴速度/累计平均耗电曲线，可点击或横拖查看数值；新增本次最高速度，重置里程时同步清除曲线和最高速度。曲线在服务内存中保留，不是永久历史记录。
+- 数据来自原协议和手机 GPS；断开或没有有效测量时显示 —，演示模式有明确标识。保锂安 MOS 温度尚未解码，不会假造读数。
+- BLE 设备与电芯页面保留原功能，统一深色配色。
 
 ## 功能
 - 总览：SOC、总电压、电流、功率、容量估算、温度、MOS 及原始告警。
@@ -12,8 +18,8 @@
 
 ## GitHub Actions 编译
 1. 解压源码，将文件和隐藏目录 `.github` 更新到原 GitHub 仓库根目录。旧的手表目录 `vela/` 可从仓库删除（本包不包含）。
-2. Actions → Build Android APK v0.3.2 → Run workflow。
-3. 成功后下载 artifact `BMS-Ride20-Android-v0.3.2`，解压找到 `BMS_Ride20_Android_v0.3.2.apk`。
+2. Actions → Build Android APK v0.3.3 → Run workflow。
+3. 成功后下载 artifact `BMS-Ride20-Android-v0.3.3`，解压找到 `BMS_Ride20_Android_v0.3.3.apk`。
 4. 安装。若旧 APK 与新 APK 签名不同，Android 不允许覆盖安装；备份设置（尤其手动容量、旧版数据），必要时卸载旧版再装。默认脚本在无本地密钥时生成测试证书，GitHub 临时 runner 不保证跨次签名一致。不要公开私钥。
 
 本地构建：JDK 17、Gradle 8.9、Android SDK 35、build-tools 35.0.0、OpenSSL，执行 `bash build-packages.sh android`。输出在 installers/。
@@ -22,4 +28,4 @@
 允许附近设备和精确定位权限；打开蓝牙；车辆静止时关闭其他 BMS App 的连接，进入设备页扫描 8 秒，上下滑动，选择 LK8625-A66542。检查是否读出总压、SOC、20 串电压及三路温度。GPS 单独开启测试。不要在骑行时操作手机。
 
 ## 验证范围
-本次重新运行纯 Java 模拟协议测试、Shell 语法检查、ZIP 完整性检查。未运行 Android SDK 编译及真机测试。
+本次通过原有纯 Java 协议模拟测试、TripHistory 120 秒窗口/缺失数据/最高速度/重置测试、Java 语法解析、Shell 语法检查、YAML 解析。未运行 Android SDK 编译及真机测试。

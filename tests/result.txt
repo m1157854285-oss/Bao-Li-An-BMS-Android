@@ -4,3 +4,4 @@ PASS JK32 split + checksum rejection
 PASS all synthetic tests
 PASS 20S 3mV / three probes / flags / malformed and stale data
 PASS LK86 synthetic 20S screenshot values, fragmented frame, checksum, stale data, model gate, read whitelist, missing capacity/MOS
+PASS 120s chart window / missing data / maximum speed / reset / defensive copy

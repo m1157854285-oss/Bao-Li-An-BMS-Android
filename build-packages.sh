@@ -26,9 +26,9 @@ android() {
   local apk="$ROOT/android/app/build/outputs/apk/release/app-release-unsigned.apk"
   test -s "$apk"
   "$bt/zipalign" -f 4 "$apk" "$OUT/.aligned.apk"
-  "$bt/apksigner" sign --key "$KEYS/private.pk8" --cert "$KEYS/certificate.pem" --out "$OUT/BMS_Ride20_Android_v0.3.2.apk" "$OUT/.aligned.apk"
+  "$bt/apksigner" sign --key "$KEYS/private.pk8" --cert "$KEYS/certificate.pem" --out "$OUT/BMS_Ride20_Android_v0.3.3.apk" "$OUT/.aligned.apk"
   rm -f "$OUT/.aligned.apk"
-  "$bt/apksigner" verify --verbose --print-certs "$OUT/BMS_Ride20_Android_v0.3.2.apk" | tee "$OUT/APK-signature.txt"
+  "$bt/apksigner" verify --verbose --print-certs "$OUT/BMS_Ride20_Android_v0.3.3.apk" | tee "$OUT/APK-signature.txt"
   openssl x509 -in "$KEYS/certificate.pem" -noout -fingerprint -sha256 > "$OUT/test-certificate.txt"
 }
 case "${1:-android}" in
