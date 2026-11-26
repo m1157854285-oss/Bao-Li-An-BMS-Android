@@ -18,7 +18,7 @@ final class TripHistory {
         if(Double.isFinite(speed)&&speed>=0) maxSpeed=Double.isFinite(maxSpeed)?Math.max(maxSpeed,speed):speed;
     }
     void add(long at,double speed,double efficiency) {
-        if(!samples.isEmpty()&&at<samples.get(samples.size()-1).at) samples.clear();
+        if(!samples.isEmpty()&&at<samples.get(samples.size()-1).at) clear();
         samples.add(new Sample(at,speed,efficiency));
         while(!samples.isEmpty()&&(samples.get(0).at<at-WINDOW_MS||samples.size()>3601)) samples.remove(0);
         observeSpeed(speed);
