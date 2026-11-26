@@ -1,3 +1,13 @@
+# 保锂安 Android V6.6.6
+
+本版基于 V0.3.8，仅统一发布版本号：versionName 6.6.6、versionCode 12。应用包名 io.bmsride.monitor 不变。保留 V0.3.8 的应用图标、联系作者、动态电芯串数与其他功能。
+
+## GitHub 更新
+将 BMS_666_update.zip 解压，上传内部文件及目录到现有仓库根目录；覆盖同路径文件。将 .github/workflows/build.yml 内容替换为 build_666.yml（网页上传可能跳过隐藏目录）。在 Actions 中运行 Build Android APK v6.6.6，下载 BMS-Ride20-Android-v6.6.6 artifact 中的 BMS_Ride20_Android_v6.6.6.apk。签名仍为原构建机制，签名不一致时不能直接覆盖安装。
+
+本次仅核对版本配置、脚本与压缩包；未执行 Android SDK 编译或真机测试。其他历史功能及限制见下方 V0.3.7 记录，V0.3.8 的界面调整以实际源码为准。
+
+## 历史记录（V0.3.7）
 # BMS 随行20 Android V0.3.7
 纯手机版，保锂安 LK8625 / LR365V10_N031x / 20串磷酸铁锂，包名 io.bmsride.monitor。
 

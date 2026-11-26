@@ -10,7 +10,7 @@
 <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE"/>
 <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION"/>
 <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
-<application android:label="BMS随行20" android:theme="@android:style/Theme.Material.NoActionBar" android:allowBackup="false">
+<application android:label="保锂安" android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher" android:theme="@android:style/Theme.Material.NoActionBar" android:allowBackup="false">
 <activity android:name=".MainActivity" android:exported="true"><intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter></activity>
 <service android:name=".MonitorService" android:exported="false" android:foregroundServiceType="connectedDevice|location"/>
 </application></manifest>

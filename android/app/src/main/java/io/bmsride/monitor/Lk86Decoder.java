@@ -25,7 +25,7 @@ final class Lk86Decoder {
   if(!confirmed)return null;
   if(cmd==CAPACITY&&d.length>=8){double x=le(d,4)/100.0;full=x>0?x:Double.NaN;}
   else if(cmd==LIVE){liveAt=-1;if(d.length<38)return null;double vv=le(d,0)/100.0,aa=(short)le(d,2)/100.0,ss=le(d,4)/50.0;if(vv<10||vv>100||ss>100)return null;v=vv;a=aa;soc=ss;flags=u(d,36);alarm=hex(d,26,30);protection=hex(d,30,34);fault=hex(d,34,36);liveAt=now;}
-  else if(cmd==CELLS){cellAt=-1;if(d.length!=45||le(d,0)!=20)return null;double[] c=new double[20];for(int i=0;i<20;i++)c[i]=le(d,5+i*2)/1000.0;if(!Protocol.validCells(c))return null;cells=c;cellAt=now;}
+  else if(cmd==CELLS){cellAt=-1;if(d.length<5)return null;int count=le(d,0);if(count<1||count>32||d.length!=5+2*count)return null;double[] c=new double[count];for(int i=0;i<count;i++)c[i]=le(d,5+i*2)/1000.0;if(!Protocol.validCells(c))return null;cells=c;cellAt=now;}
   else if(cmd==TEMPS){tempAt=-1;temps=new double[0];if(d.length<2)return null;int n=le(d,0);if(n!=3||d.length!=2+2*n)return null;double[] t3=new double[n];for(int i=0;i<n;i++){double t=(le(d,2+i*2)-2731)/10.0;t3[i]=(t>=-50&&t<=120)?t:Double.NaN;}temps=t3;tempAt=now;}
   else return null;
   if(cmd!=LIVE&&cmd!=CELLS&&cmd!=TEMPS&&cmd!=CAPACITY)return null;
