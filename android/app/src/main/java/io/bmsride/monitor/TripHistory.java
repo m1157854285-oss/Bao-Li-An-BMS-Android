@@ -3,9 +3,9 @@ package io.bmsride.monitor;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Recent 120 seconds, with missing data kept as gaps. All calls on service/UI main thread. */
+/** Recent 60 minutes, with missing data kept as gaps. All calls on service/UI main thread. */
 final class TripHistory {
-    static final long WINDOW_MS = 120_000;
+    static final long WINDOW_MS = 3_600_000;
     static final class Sample {
         final long at; final double speed, efficiency;
         Sample(long at, double speed, double efficiency) {
@@ -20,7 +20,7 @@ final class TripHistory {
     void add(long at,double speed,double efficiency) {
         if(!samples.isEmpty()&&at<samples.get(samples.size()-1).at) samples.clear();
         samples.add(new Sample(at,speed,efficiency));
-        while(!samples.isEmpty()&&(samples.get(0).at<at-WINDOW_MS||samples.size()>121)) samples.remove(0);
+        while(!samples.isEmpty()&&(samples.get(0).at<at-WINDOW_MS||samples.size()>3601)) samples.remove(0);
         observeSpeed(speed);
     }
     double maxSpeed(){return maxSpeed;}
