@@ -12,6 +12,8 @@ public class UiRulesTest {
   check(UiRules.deltaWarning(3.4-3.3));check(!UiRules.deltaWarning(.099));check(!UiRules.deltaWarning(Double.NaN));
   check(UiRules.temperatureRank(new double[]{26.5,27.1,26.8},0)==-1);check(UiRules.temperatureRank(new double[]{26.5,27.1,26.8},1)==1);check(UiRules.temperatureRank(new double[]{26.5,27.1,26.8},2)==0);check(UiRules.temperatureRank(new double[]{26.5,26.5,26.5},1)==0);check(UiRules.temperatureRank(new double[]{Double.NaN,26.5,Double.NaN},1)==0);
   check(UiRules.powerMagnitude(-1200)==1200&&UiRules.powerTitle(-1200).equals("放电功率"));check(UiRules.powerMagnitude(300)==300&&UiRules.powerTitle(300).equals("充电功率"));check(Double.isNaN(UiRules.powerMagnitude(Double.NaN)));
+  check(UiRules.connectedTitle(null).equals("保锂安"));check(UiRules.connectedTitle("未知设备").equals("保锂安"));check(UiRules.connectedTitle("LK8625-A66542").equals("保锂安 LK8625-A66542"));check(UiRules.connectedTitle("保锂安 LK8625-A66542").equals("保锂安 LK8625-A66542"));check(UiRules.connectedTitle("保锂安").equals("保锂安"));
+  System.out.println("PASS stable brand title / complete connected device name / no duplicate brand");
   System.out.println("PASS display precision / 100mV threshold / temperature extrema / BMS power direction");
   System.out.println("PASS drag target / snap thresholds / tab bounds / stable device priority / active device dedup / numeric formatting");
  }

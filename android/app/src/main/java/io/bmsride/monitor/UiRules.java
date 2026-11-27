@@ -1,5 +1,7 @@
 package io.bmsride.monitor;
 final class UiRules {
+ // Keep brand stable; append the complete advertised name without stripping its model prefix.
+ static String connectedTitle(String name){String n=name==null?"":name.replace('\n',' ').replace('\r',' ').trim();if(n.isEmpty()||n.equals("未知设备")||n.equals("保锂安"))return "保锂安";if(n.startsWith("保锂安")){n=n.substring("保锂安".length()).trim();if(n.isEmpty())return "保锂安";}return "保锂安 "+n;}
  static int devicePriority(boolean active,boolean supported){return active?0:supported?1:2;}
  static <T> java.util.Map<String,T> withActive(java.util.Map<String,T> scanned,String address,T active){java.util.Map<String,T> out=new java.util.LinkedHashMap<>();if(active!=null)out.put(address,active);for(java.util.Map.Entry<String,T> e:scanned.entrySet())out.putIfAbsent(e.getKey(),e.getValue());return out;}
  static String formatNumber(double n,int decimals){return Double.isFinite(n)?String.format(java.util.Locale.US,"%."+decimals+"f",n):"—";}

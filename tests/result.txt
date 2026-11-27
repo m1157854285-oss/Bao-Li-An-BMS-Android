@@ -3,9 +3,10 @@ PASS GPS walking / immediate start / near-zero / riding / gaps / stale-invalid /
 PASS 20S 3mV / three probes / flags / malformed and stale data
 PASS LK86 synthetic 20S screenshot values, fragmented frame, checksum, stale data, model gate, read whitelist, missing capacity/MOS
 PASS LK8625 shared battery model / valid cells / delta / defensive copy
+PASS pause / disconnect / reset retains last range / next trip replaces estimate / battery change clears cache
 PASS paired GPS/BLE energy, missing data, disconnect, gap, reset
 PASS 60min chart window / missing data / maximum speed / reset / defensive copy
+PASS stable brand title / complete connected device name / no duplicate brand
 PASS display precision / 100mV threshold / temperature extrema / BMS power direction
 PASS drag target / snap thresholds / tab bounds / stable device priority / active device dedup / numeric formatting
-PASS pause / disconnect / reset retains last range / next trip replaces estimate / battery change clears cache
-PASS all Java source syntax (Javac parser; not Android API type checking)
+PASS all Java source syntax (Javac parser; not Android API type checking), 17 files
