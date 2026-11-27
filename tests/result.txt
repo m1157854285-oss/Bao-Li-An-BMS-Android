@@ -1,5 +1,6 @@
 PASS sub-second accepted GPS peak retained / integer maximum display
 PASS GPS walking / immediate start / near-zero / riding / gaps / stale-invalid / reset
+PASS last validated MAC matching / unnamed advertisement / wrong device rejection / new target replacement
 PASS 20S 3mV / three probes / flags / malformed and stale data
 PASS LK86 synthetic 20S screenshot values, fragmented frame, checksum, stale data, model gate, read whitelist, missing capacity/MOS
 PASS LK8625 shared battery model / valid cells / delta / defensive copy
@@ -9,4 +10,4 @@ PASS 60min chart window / missing data / maximum speed / reset / defensive copy
 PASS stable brand title / complete connected device name / no duplicate brand
 PASS display precision / 100mV threshold / temperature extrema / BMS power direction
 PASS drag target / snap thresholds / tab bounds / stable device priority / active device dedup / numeric formatting
-PASS all Java source syntax (Javac parser; not Android API type checking), 17 files
+PASS all Java source syntax (Javac parser; not Android API type checking), 19 files
