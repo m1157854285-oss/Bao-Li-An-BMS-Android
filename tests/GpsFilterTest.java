@@ -15,6 +15,13 @@ public class GpsFilterTest {
   r=f.add(t,8,.9,.5);close(r.kmh,3.24);close(r.meters,0);
   r=f.add(t+6000,8,.9,.5);close(r.kmh,3.24);close(r.meters,0);
   f.reset();close(f.add(t+7000,8,.1,.3).kmh,0);
+  f.reset();TripHistory hist=new TripHistory();
+  // A short peak between one-second display refreshes is retained at full precision.
+  hist.observeSpeed(f.add(1000,8,36.6/3.6,.3).kmh);
+  hist.observeSpeed(f.add(1250,8,39.1/3.6,.3).kmh);
+  hist.observeSpeed(f.add(1500,8,37/3.6,.3).kmh);
+  close(hist.maxSpeed(),39.1);check(UiRules.formatNumber(hist.maxSpeed(),0).equals("39"));
+  System.out.println("PASS sub-second accepted GPS peak retained / integer maximum display");
   System.out.println("PASS GPS walking / immediate start / near-zero / riding / gaps / stale-invalid / reset");
  }
 }
