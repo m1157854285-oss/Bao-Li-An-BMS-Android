@@ -1,4 +1,4 @@
-name: Build Android APK v6.6.6
+name: Build Android APK v6.6.6 (rev2)
 on:
   workflow_dispatch:
 permissions:
@@ -43,7 +43,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: BMS-Ride20-Android-v6.6.6
+          name: BMS-Ride20-Android-v6.6.6-r2
           path: |
             installers/*.apk
             installers/*.txt
